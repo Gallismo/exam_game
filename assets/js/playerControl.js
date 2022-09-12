@@ -14,8 +14,6 @@ act_btn.addEventListener('click',function (){
         player_div.className = "player";
 
         console.log(player_x)
-
-        player_div.innerHTML ='<img src="/assets/img/player.png" alt="">';
         $("#game .elements").append(player_div);
 
     }
