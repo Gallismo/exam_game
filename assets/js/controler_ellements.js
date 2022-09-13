@@ -180,13 +180,26 @@ class Player extends Drawable {
         this.x = this.game.$zone.width() / 2 - this.w / 2;
         this.y = this.game.$zone.height() - this.h;
         this.speedPerFrame = 20;
+        this.skillTimer = 0;
+        this.couldTimer = 0;
         this.keys = {
             ArrowLeft: false,
-            ArrowRight: false
+            ArrowRight: false,
+            Space: false
         }
         this.createElement();
         this.bindKeyEvents();
 
+
+    }
+    applySkill(){
+        for (let i = 1; i < this.game.elements.length; i++) {
+            if (this.game.elements[i].x < this.x + (this.w / 2)) {
+                this.game.elements[i].x +=15;
+            }else if (this.game.elements[i].x > this.x + (this.w / 2)) {
+                this.game.elements[i].x -= 15;
+            }
+        }
     }
     bindKeyEvents() {
         document.addEventListener('keydown', event => this.changeKeyStatus(event.code, true));
@@ -205,6 +218,23 @@ class Player extends Drawable {
         } else {
             this.offsets.x = 0;
         }
+        if (this.keys.Space && this.couldTimer === 0) {
+            this.skillTimer++;
+            $('#skill').html(`Осталось ${Math.ceil((240-this.skillTimer) / 60)}`);
+            this.applySkill();
+        }
+        if (this.keys.Space > 240 || (!this.keys.Space && this.skillTimer > 1)) {
+            this.couldTimer++;
+            $('#skill').html(`В откате еще ${Math.ceil((300-this.couldTimer) / 60)}`);
+            this.keys.Space = false
+        }
+
+        if (this.couldTimer > 300) {
+            this.couldTimer = 0;
+            this.skillTimer = 0;
+            $('#skill').html(`Гоотово`);
+        }
+
         super.update();
     }
 }
