@@ -1,22 +1,3 @@
-window.onload = () => {
-    checkStorage();
-    nav();
-    startLoop();
-    setInterval(() => {
-        if (panel === 'game') {
-            game.game = new Game();
-            game.game.start();
-            panel = 'game process';
-        }
-    }, 500)
-}
-
-let random = (min, max) =>{
-    min - Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min +1)) + min;
-}
-
 
 class Drawable {
     constructor(game) {
@@ -70,7 +51,7 @@ class Drawable {
 }
 class Game {
     constructor() {
-        this.name = name;
+        this.name = name.value;
         this.$zone = $('.elements');
         this.elements = [];
         this.player = this.generate(Player);
@@ -261,7 +242,7 @@ class Fruits extends Drawable {
     constructor(game) {
         super(game);
         this.w = 70;
-        this.h = 70;
+        this.h = 7
         this.x = random(0,this.game.$zone.width() - this.w);
         this.y = 60;
         this.offsets.y = 3;
