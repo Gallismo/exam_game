@@ -51,7 +51,7 @@ class Drawable {
 }
 class Game {
     constructor() {
-        this.name = name.value;
+        this.name = name;
         this.$zone = $('.elements');
         this.elements = [];
         this.player = this.generate(Player);
@@ -118,9 +118,9 @@ class Game {
             $('#congratulation').html(`YOU WIN`);
         }else{
             $('#playerName').html(`Жаль, ${this.name}!`);
-            $('#endTime').html(`Время чмошника: ${time.m1}${time.m2}:${time.s1}${time.s2}`);
-            $('#collectedFruits').html(`ЛОх собрал: ${this.points}`);
-            $('#congratulation').html(`YOU LOSER`);
+            $('#endTime').html(`Вы умудрились проиграть за: ${time.m1}${time.m2}:${time.s1}${time.s2}`);
+            $('#collectedFruits').html(`Вы успели собрать: ${this.points}`);
+            $('#congratulation').html(`Ты молодец, у тебя все получится`);
         }
         go('end', 'panel d-flex justify-content-center align-items-center');
     }
@@ -242,7 +242,7 @@ class Fruits extends Drawable {
     constructor(game) {
         super(game);
         this.w = 70;
-        this.h = 7
+        this.h = 70
         this.x = random(0,this.game.$zone.width() - this.w);
         this.y = 60;
         this.offsets.y = 3;
