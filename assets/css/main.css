@@ -51,16 +51,37 @@ main{
 .player{
     background: url("../img/player.png") center no-repeat;
     background-size: contain;
+
 }
 .apple{
     background: url("../img/apple.png") center no-repeat;
     background-size: contain;
+    animation: keka infinite .6s linear;
 }
 .orange{
     background: url("../img/orange.png") center no-repeat;
     background-size: contain;
+    animation: keka infinite .7s linear;
 }
 .banana{
     background: url("../img/banana.png") center no-repeat;
     background-size: contain;
+    animation: keka infinite .8s linear;
+}
+@keyframes keka {
+    to {
+        transform:rotate(360deg);
+    }
+}
+.pause{
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    z-index:1000;
+    background-color:rgba(0,0,0,.8) ;
+    color:white;
 }
