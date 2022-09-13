@@ -1,3 +1,6 @@
+
+
+
 let speed_player = 5;
 let player_y = 0;
 let player_x = 0;
